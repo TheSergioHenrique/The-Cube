@@ -4,7 +4,7 @@
 #include <unistd.h>
 float A, B ,C;
 
-float cubeWidth=10;
+float cubeWidth=8;
 int width= 160, height= 44;
 float zBuffer[160 * 44];
 char buffer[160 * 44];
@@ -61,7 +61,12 @@ int main() {
         for(float cubeX = - cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
             for(float cubeY = - cubeWidth; cubeY < cubeWidth;
                 cubeY += incrementSpeed){
-                    calculateForSurface(cubeX, cubeY, -cubeWidth, '.');
+                    calculateForSurface(cubeX, cubeY, -cubeWidth, '_');
+                    calculateForSurface(cubeWidth,cubeY,cubeX,',');
+                    calculateForSurface(-cubeWidth,cubeY,-cubeX,'~');
+                    calculateForSurface(cubeX, cubeY, cubeWidth, '-');
+                    calculateForSurface(cubeX, -cubeWidth, -cubeY, '.');
+                    calculateForSurface(cubeX, cubeWidth, cubeY, '.');
             }
         }
         printf("\x1b[H");
@@ -71,7 +76,7 @@ int main() {
 
         A += 0.005;
         B += 0.005;
-        usleep(1200);
+        usleep(1000);
     }
    return 0;
 }
